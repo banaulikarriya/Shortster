@@ -1,0 +1,31 @@
+<h2><center>New Shortcode</center></h2>
+
+{{#if err}}
+<h5 style="color:red"> {{ err }}</h5>
+{{/if}}
+
+<form class="form-horizontal" action="/addShortcode" method="post">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Url:</label>
+      <div class="col-sm-8">
+      <input type="text" class="form-control" name="url" id="url"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Shortcode:</label>
+      <div class="col-sm-8">
+      <input type="text" class="form-control" name="shortcode" id="shortcode"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Url Details:</label>
+      <div class="col-sm-8">          
+         <textarea class="form-control" rows="5" name="details" id="details"></textarea>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-8">
+        <button type="submit" class="btn btn-info">Save</button>
+      </div>
+    </div>
+  </form>
