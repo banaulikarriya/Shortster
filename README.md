@@ -1,0 +1,2 @@
+# Shortster
+url shortcode generation 
