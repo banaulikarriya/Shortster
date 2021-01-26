@@ -19,6 +19,10 @@ const taskSchema = new Schema({
         type: Boolean,
         default: true,
     },
+    counter: {
+        type: Number,
+        default: 0,
+    },
 }, { timestamps: true }, );
 
 module.exports = mongoose.model('Urls', taskSchema);

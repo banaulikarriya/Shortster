@@ -1,30 +1,26 @@
-<h2>Url List</h2>
-<h2>List Of all urls</h2>
+<h2>List Of All Urls</h2>
 
+{{#if err}}
+<h5 style="color:red"> {{ err }}</h5>
+{{/if}}
 
-{{!-- <form class="form-inline" method="post" action="filter">
-  <div class="form-group mb-2">
-    <select class="form-control" id="membername" name="membername">
-      <option value="">(Select Member name)</option>
-      <option value="Bob">Bob</option>
-      <option value="Pingu">Pingu</option>
-      <option value="Tingu">Tingu</option>
-    </select>
-  </div>
-  <button type="submit" class="btn btn-primary mb-2">Filter</button>
-</form> --}}
-<br> 
-{{# each tasks }}
-<div class="col-md-12 column list-group" style="border: 1px solid rgba(0,0,0,.125);padding:5px">
-  <div>Url
-    <strong>{{ this.name }}</strong>
-  </div>
-  <div> details
-    <strong>{{ this.taskName }} </strong>
-  </div>
-  <div>
-    <b>Task Details: </b> {{ this.taskDetails }}</div>
-  <div>
-    <b>date: </b> {{ this.working }}</div>
-</div>
-{{/each}}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Url</th>
+      <th scope="col">Shortcode</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each  urls }}
+    <tr>
+      <th scope="row">{{ @index }}</th>
+      <td>{{ this.url }}</td>
+      <td><a href="shortcode/{{ this.shortcode }}/stats">{{ this.shortcode }} </a></td>
+      <td>{{ this.details }}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

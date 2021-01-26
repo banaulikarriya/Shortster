@@ -1,0 +1,17 @@
+<h2><center>View Shortcode</center></h2>
+
+{{#if err}}
+<h5 style="color:red"> {{ err }}</h5>
+{{/if}}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Shortcode Details</div>
+    <div class="panel-body">
+      {{ result }}
+     <p><strong>Url:</strong> {{url}} </p>
+     <p><strong> Shortcode: </strong> {{shortcode}} </p> 
+     <p> <strong>Accessed Count: </strong> {{counter}} </p>
+     <p> <strong>Created At:</strong> {{createdAt}} </p> 
+     <p> <strong>Updated At:</strong> {{updatedAt}} </p> 
+    </div>
+</div>

@@ -6,13 +6,26 @@ randomstring.generate({
 });
 
 
+//function to list all urls
+async function list(req, res) {
+    let data = req.body;
+    try {
+        let result = await Url.find({ status: true }).lean().exec();
+        res.render("index", { urls: result });
+    } catch (e) {
+        console.log(e);
+        let errMsg = `There was Error in viewing ${e}`;
+        res.render("index", { err: errMsg });
+    }
+}
+
 // create view for short code
 async function viewAddShortcode(req, res) {
 
     try {
         res.render("addShortcode");
     } catch (e) {
-        var errMsg = `There was Error in viewing ${e}`;
+        let errMsg = `There was Error in viewing ${e}`;
         res.render("addShortCode", { err: errMsg });
     }
 }
@@ -31,12 +44,30 @@ async function addShortcode(req, res) {
         return res.json(result);
     } catch (e) {
         console.log(e);
-        var errMsg = `There was Error in creating short code: ${e}`;
+        let errMsg = `There was Error in creating short code: ${e}`;
         res.render("addShortcode", { err: errMsg });
+    }
+}
+
+
+//function to add shortcode details
+async function getShortcodeDetails(req, res) {
+    let shortcode = req.params.shortcode;
+    console.log(shortcode);
+    try {
+        let result = await Url.findOneAndUpdate({ status: true, shortcode }, { "$inc": { counter: 1 } }, { new: true }).lean().exec();
+        console.log(result);
+        res.render("viewShortcode", result);
+    } catch (e) {
+        console.log(e);
+        let errMsg = `There was Error in creating short code: ${e}`;
+        res.render("viewShortcode", { err: errMsg });
     }
 }
 
 module.exports = {
     addShortcode,
-    viewAddShortcode
+    viewAddShortcode,
+    list,
+    getShortcodeDetails
 }
