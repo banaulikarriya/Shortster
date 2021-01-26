@@ -41,7 +41,8 @@ async function addShortcode(req, res) {
         }
         let url_data = new Url(data);
         let result = await url_data.save();
-        return res.json(result);
+        let shortcode_message = `Successfully created shortcode ${result.shortcode}`;
+        res.render("addShortCode", { success: shortcode_message });
     } catch (e) {
         console.log(e);
         let errMsg = `There was Error in creating short code: ${e}`;
@@ -53,10 +54,8 @@ async function addShortcode(req, res) {
 //function to add shortcode details
 async function getShortcodeDetails(req, res) {
     let shortcode = req.params.shortcode;
-    console.log(shortcode);
     try {
-        let result = await Url.findOneAndUpdate({ status: true, shortcode }, { "$inc": { counter: 1 } }, { new: true }).lean().exec();
-        console.log(result);
+        let result = await Url.findOne({ status: true, shortcode }).lean().exec();
         res.render("viewShortcode", result);
     } catch (e) {
         console.log(e);
@@ -65,9 +64,24 @@ async function getShortcodeDetails(req, res) {
     }
 }
 
+//get shortcode url
+async function getUrl(req, res) {
+    let shortcode = req.params.shortcode;
+    try {
+        let result = await Url.findOneAndUpdate({ status: true, shortcode }, { "$inc": { counter: 1 } }, { new: true }).lean().exec();
+        res.redirect(result.url);
+    } catch (e) {
+        console.log(e);
+        let errMsg = `There was Error getting url: ${e}`;
+        res.render("viewShortcode", { err: errMsg });
+    }
+}
+
+
 module.exports = {
     addShortcode,
     viewAddShortcode,
     list,
-    getShortcodeDetails
+    getShortcodeDetails,
+    getUrl
 }

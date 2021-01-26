@@ -11,7 +11,9 @@ router.get('/addShortcode', shortCodeController.viewAddShortcode);
 router.post('/addShortcode', shortCodeController.addShortcode);
 
 //view shortcode details
-router.get('/shortcode/:shortcode/stats', shortCodeController.getShortcodeDetails);
+router.get('/:shortcode/stats', shortCodeController.getShortcodeDetails);
 
+//view shortcode url
+router.get('/:shortcode', shortCodeController.getUrl);
 
 module.exports = router;

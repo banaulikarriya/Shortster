@@ -10,6 +10,7 @@
       <th scope="col">#</th>
       <th scope="col">Url</th>
       <th scope="col">Shortcode</th>
+      <th scope="col">statistics</th>
       <th scope="col">Details</th>
     </tr>
   </thead>
@@ -18,8 +19,9 @@
     <tr>
       <th scope="row">{{ @index }}</th>
       <td>{{ this.url }}</td>
-      <td><a href="shortcode/{{ this.shortcode }}/stats">{{ this.shortcode }} </a></td>
+      <td><a href="{{ this.shortcode }}">{{ this.shortcode }} </a></td>
       <td>{{ this.details }}</td>
+      <td><a href="{{ this.shortcode }}/stats">More </a></td>
     </tr>
     {{/each}}
   </tbody>

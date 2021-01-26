@@ -4,7 +4,12 @@
 <h5 style="color:red"> {{ err }}</h5>
 {{/if}}
 
+{{#if success}}
+<h5 style="color:green"> {{ success }}</h5>
+{{/if}}
+
 <form class="form-horizontal" action="/addShortcode" method="post">
+    
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Url:</label>
       <div class="col-sm-8">

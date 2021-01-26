@@ -9,7 +9,8 @@ const taskSchema = new Schema({
     shortcode: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        minLength: 4
     },
     details: {
         type: String,
